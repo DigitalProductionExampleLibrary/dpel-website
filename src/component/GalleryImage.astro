@@ -1,0 +1,63 @@
+---
+import { BASE_URL } from "../utils/constants";
+
+const { src, caption, captionStyle, ...attrs } = Astro.props;
+const isOverlay = captionStyle === 'overlay';
+const hasCaption = Boolean(caption);
+const showOverlay = isOverlay && hasCaption;
+const showCaption = !isOverlay && hasCaption;
+const galleryIdx = attrs['data-gallery'];
+const imageIdx = attrs['data-index'];
+---
+
+<div class:list={["gallery-item", { "gallery-item--overlay": isOverlay, "gallery-item--below": !isOverlay }]} data-gallery={galleryIdx} data-index={imageIdx}>
+  <div class="gallery-item-img-wrapper">
+    <img class="gallery-scroll-img" src={`${BASE_URL}${src}`} />
+    {showOverlay && <span class="gallery-caption-overlay">{caption}</span>}
+  </div>
+  {showCaption && <p class="gallery-caption-below">{caption}</p>}
+</div>
+
+<style>
+.gallery-item {
+  flex-shrink: 0;
+}
+
+.gallery-item-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-scroll-img {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Overlay style: white text on black gradient at bottom of image */
+.gallery-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px 16px 15px;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 1));
+  color: #ffffff;
+  font-family: "Titillium Web", "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* Below style: traditional caption underneath the image */
+.gallery-caption-below {
+  margin-top: 8px;
+  color: #555555;
+  font-family: "Titillium Web", "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+</style>

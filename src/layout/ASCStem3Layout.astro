@@ -4,6 +4,7 @@
  */
 import Breadcrumbs from "../component/Breadcrumbs.astro";
 import Button from "../component/Button.astro";
+import GalleryImage from "../component/GalleryImage.astro";
 import Table from "../component/Table2.astro";
 import '../styles/global.css'
 import LicenseLayout from "./LicenseLayout.astro";
@@ -22,6 +23,17 @@ const {
   title,
   titleAlt,
 } = Astro.props;
+
+// Normalize gallery images into a consistent structure
+const normalizedGalleries = (otherImages || []).map(gallery => ({
+  title: gallery.title,
+  captionStyle: gallery.captionStyle || 'none',
+  images: gallery.images.map(image =>
+    typeof image === 'string'
+      ? { src: image, caption: '' }
+      : { src: image.src, caption: image.caption || '' }
+  ),
+}));
 ---
 
 <>
@@ -48,22 +60,23 @@ const {
     </div>
   </header>
   <div class="post-content container mx-auto px-10">
-    { otherImages &&
-      otherImages.map(gallery => (
-        <div class="post-content-gallery pb-20">
-          <h3 class="pb-5">{gallery.title}</h3>
-          <div class="gallery-scroll">
-            {gallery.images.map(image => (
-              <img class="gallery-scroll-img" src={`${BASE_URL}${image}`} />
-            ))}
-          </div>
+    {normalizedGalleries.map((gallery, gi) => (
+      <div class="post-content-gallery pb-20">
+        <h3 class="pb-5">{gallery.title}</h3>
+        <div class="gallery-scroll" data-gallery-index={gi}>
+          {gallery.images.map((item, ii) => (
+            <GalleryImage src={item.src} caption={item.caption} captionStyle={gallery.captionStyle} data-gallery={gi} data-index={ii} />
+          ))}
         </div>
-      ))
-    }
+      </div>
+    ))}
+    {downloadSection && (
     <div class="post-content-download container mx-auto desktop:px-40 tablet:px-40 mobile-h:px-5 mobile-v:px-5 text-center">
       <h2 class="pb-5">{downloadSection.title}</h2>
 
     </div>
+    )}
+    {licenseContent && (
     <div class="license mt-16 p-10">
       <p class="pb-6 desktop:ml-16 tablet:ml-16 mobile-h:ml-10 callout-text justify-self-center">{downloadSection.subtext}</p>
       {<LicenseLayout
@@ -71,6 +84,8 @@ const {
         url={''}
       />}
     </div>
+    )}
+    {downloadSection && (
     <p class="download-info pt-24 desktop:mx-40 pb-10">For large downloads, it is recommended to use a command-line tool
       such as <strong>wget</strong> or <strong>curl</strong>. In most
       browsers, you can right-mouse on the download link to copy the URL. Then
@@ -80,17 +95,100 @@ const {
       <strong>wget -c &lt;URL&gt;</strong> or <strong>curl -L -O -C -
       &lt;URL&gt;</strong>.
     </p>
-    {
-      downloadSection.downloads.map((data) => {
+    )}
+    {downloadSection && downloadSection.downloads.map((data) => {
         return (<div class="table-header mt-5"><h3 class="text-left pb-7">{data.tableHeader}</h3>
         <Table downloadData={data.downloadsList} /></div>)
       })
     }
 
   </div>
-</>
-<style>
 
+  <!-- Lightbox modal -->
+  <div id="gallery-lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-overlay"></div>
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
+    <div class="lightbox-content">
+      <img class="lightbox-img" src="" alt="" />
+      <p class="lightbox-caption"></p>
+    </div>
+  </div>
+</>
+
+<script define:vars={{ normalizedGalleries, BASE_URL }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+
+    let currentGallery = 0;
+    let currentIndex = 0;
+
+    function openLightbox(galleryIdx, imageIdx) {
+      currentGallery = galleryIdx;
+      currentIndex = imageIdx;
+      updateLightbox();
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+      const gallery = normalizedGalleries[currentGallery];
+      const item = gallery.images[currentIndex];
+      lightboxImg.src = `${BASE_URL}${item.src}`;
+      lightboxCaption.textContent = item.caption || '';
+      lightboxCaption.style.display = item.caption ? 'block' : 'none';
+      prevBtn.style.display = gallery.images.length > 1 ? 'block' : 'none';
+      nextBtn.style.display = gallery.images.length > 1 ? 'block' : 'none';
+    }
+
+    function showPrev() {
+      const gallery = normalizedGalleries[currentGallery];
+      currentIndex = (currentIndex - 1 + gallery.images.length) % gallery.images.length;
+      updateLightbox();
+    }
+
+    function showNext() {
+      const gallery = normalizedGalleries[currentGallery];
+      currentIndex = (currentIndex + 1) % gallery.images.length;
+      updateLightbox();
+    }
+
+    // Attach click listeners to all gallery images
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const galleryIdx = parseInt(item.getAttribute('data-gallery'), 10);
+      const imageIdx = parseInt(item.getAttribute('data-index'), 10);
+      if (!isNaN(galleryIdx) && !isNaN(imageIdx)) {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => openLightbox(galleryIdx, imageIdx));
+      }
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.getAttribute('aria-hidden') === 'true') return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  });
+</script>
+
+<style is:global>
 .header-post-content{
   background-image: url("/images/general/dpel-icon-faded.svg");
   background-position: center;
@@ -170,10 +268,78 @@ const {
   padding-bottom: 0.75rem;
 }
 
-.gallery-scroll-img {
-  height: 300px;
-  width: auto;
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox[aria-hidden="true"] {
+  display: none;
+}
+.lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+}
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 80vh;
   object-fit: contain;
-  flex-shrink: 0;
+}
+.lightbox-caption {
+  color: #ffffff;
+  font-family: "Titillium Web", "Open Sans", sans-serif;
+  font-size: 16px;
+  margin-top: 12px;
+  text-align: center;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 10000;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 48px;
+  cursor: pointer;
+  line-height: 1;
+}
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 60px;
+  cursor: pointer;
+  padding: 10px 20px;
+  line-height: 1;
+}
+.lightbox-prev {
+  left: 20px;
+}
+.lightbox-next {
+  right: 20px;
+}
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  color: #cccccc;
 }
 </style>
