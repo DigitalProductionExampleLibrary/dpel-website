@@ -1,0 +1,506 @@
+---
+/**
+ * TABLE STEM3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * 6-column download table for ASC StEM3 staging page.
+ * Columns: Asset Name, Image, Movie Preview, Description,
+ *          License, Download + Size
+ *
+ * Movie Preview opens an embedded video player overlay.
+ *
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+import { BASE_URL } from "../utils/constants";
+
+const { downloadData } = Astro.props;
+
+function buildDescHtml(item) {
+  let html = item.description || '';
+  if (item.extraDescription) {
+    html += `<span class="stem3-extra-desc">${item.extraDescription}</span>`;
+  }
+  return html;
+}
+---
+
+<table class="stem3-table text-left w-full table-auto">
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Image</th>
+      <th>Preview</th>
+      <th>Description</th>
+      <th>License</th>
+      <th>Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      downloadData.map((item) => (
+        <tr>
+          <td class="stem3-td-name">
+            <strong>{item.assetName}</strong>
+          </td>
+          <td class="stem3-td-image">
+            {item.thumbnail ? (
+              <img
+                class="stem3-thumb stem3-lightbox-trigger"
+                src={`${BASE_URL}${item.thumbnail}`}
+                alt={item.assetName}
+                data-full-src={`${BASE_URL}${item.thumbnail}`}
+              />
+            ) : (
+              <span class="stem3-no-image">—</span>
+            )}
+          </td>
+          <td class="stem3-td-preview">
+            {item.moviePreview ? (
+              <button
+                class="stem3-play-btn"
+                data-video-src={item.moviePreview}
+                aria-label={`Play preview of ${item.assetName}`}
+              >
+                <svg class="stem3-play-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5" fill="none" />
+                  <polygon points="9.5,7 9.5,17 17.5,12" />
+                </svg>
+              </button>
+            ) : (
+              <span class="stem3-no-preview">—</span>
+            )}
+          </td>
+          <td class="stem3-td-desc">
+            <p set:html={buildDescHtml(item)} />
+          </td>
+          <td class="stem3-td-license">
+            {item.licenseUrl ? (
+              <a class="stem3-license-link" href={item.licenseUrl}>
+                <svg class="stem3-license-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+                <span>License</span>
+              </a>
+            ) : null}
+          </td>
+          <td class="stem3-td-download">
+            {item.buttons && item.buttons.length > 0 ? (
+              item.buttons.map((button) => (
+                <div class="stem3-download-item">
+                  <a class="stem3-download-link" href={button.url}>
+                    <svg class="stem3-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    <span class="stem3-download-text">{button.text}</span>
+                  </a>
+                  {button.size ? <p class="stem3-size">{button.size}</p> : null}
+                  {button.hash ? <p class="stem3-hash">{button.hash}</p> : null}
+                </div>
+              ))
+            ) : item.downloadUrl ? (
+              <div class="stem3-download-item">
+                <a class="stem3-download-link" href={item.downloadUrl}>
+                  <svg class="stem3-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  <span class="stem3-download-text">Download</span>
+                </a>
+              </div>
+            ) : null}
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<!-- Video Player Overlay -->
+<div id="stem3-video-overlay" class="stem3-video-overlay" aria-hidden="true">
+  <div class="stem3-video-overlay-bg"></div>
+  <div class="stem3-video-container">
+    <button class="stem3-video-close" aria-label="Close video">&times;</button>
+    <video id="stem3-video-player" controls preload="none">
+      <source id="stem3-video-source" src="" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <iframe id="stem3-video-iframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Image Lightbox Overlay -->
+<div id="stem3-image-lightbox" class="stem3-image-lightbox" aria-hidden="true">
+  <div class="stem3-image-lightbox-bg"></div>
+  <button class="stem3-image-lightbox-close" aria-label="Close">&times;</button>
+  <div class="stem3-image-lightbox-content">
+    <img class="stem3-image-lightbox-img" src="" alt="" />
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('stem3-video-overlay');
+    const video = document.getElementById('stem3-video-player') as HTMLVideoElement;
+    const videoSource = document.getElementById('stem3-video-source') as HTMLSourceElement;
+    const iframe = document.getElementById('stem3-video-iframe') as HTMLIFrameElement;
+    const closeBtn = overlay?.querySelector('.stem3-video-close');
+    const overlayBg = overlay?.querySelector('.stem3-video-overlay-bg');
+
+    function getEmbedUrl(src: string): string | null {
+      // Already a player.vimeo.com embed URL (with privacy hash) — pass through
+      if (src.includes('player.vimeo.com')) return src + (src.includes('?') ? '&autoplay=1' : '?autoplay=1');
+      // Vimeo regular URL
+      const vimeoMatch = src.match(/vimeo\.com\/(\d+)(?:\/([a-f0-9]+))?/);
+      if (vimeoMatch) {
+        const id = vimeoMatch[1];
+        const hash = vimeoMatch[2];
+        return `https://player.vimeo.com/video/${id}?${hash ? 'h=' + hash + '&' : ''}autoplay=1&dnt=1`;
+      }
+      // YouTube
+      const ytMatch = src.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
+      if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1`;
+      return null;
+    }
+
+    function openVideo(src: string) {
+      if (!overlay) return;
+      const embedUrl = getEmbedUrl(src);
+      if (embedUrl && iframe) {
+        // Use iframe for Vimeo/YouTube
+        video.style.display = 'none';
+        iframe.style.display = 'block';
+        iframe.src = embedUrl;
+      } else if (video && videoSource) {
+        // Use native video for direct files
+        iframe.style.display = 'none';
+        video.style.display = 'block';
+        videoSource.src = src;
+        video.load();
+        video.play();
+      }
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo() {
+      if (!overlay) return;
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+      if (iframe) {
+        iframe.src = '';
+      }
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click handlers to all play buttons
+    document.querySelectorAll('.stem3-play-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const src = btn.getAttribute('data-video-src');
+        if (src) openVideo(src);
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeVideo);
+    overlayBg?.addEventListener('click', closeVideo);
+
+    document.addEventListener('keydown', (e) => {
+      if (overlay?.getAttribute('aria-hidden') === 'true') return;
+      if (e.key === 'Escape') closeVideo();
+    });
+
+    // Image lightbox
+    const imgLightbox = document.getElementById('stem3-image-lightbox');
+    const imgLightboxImg = imgLightbox?.querySelector('.stem3-image-lightbox-img') as HTMLImageElement;
+    const imgCloseBtn = imgLightbox?.querySelector('.stem3-image-lightbox-close');
+    const imgBg = imgLightbox?.querySelector('.stem3-image-lightbox-bg');
+
+    function openImageLightbox(src: string, alt: string) {
+      if (!imgLightbox || !imgLightboxImg) return;
+      imgLightboxImg.src = src;
+      imgLightboxImg.alt = alt;
+      imgLightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageLightbox() {
+      if (!imgLightbox) return;
+      imgLightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.stem3-lightbox-trigger').forEach(img => {
+      img.addEventListener('click', () => {
+        const src = img.getAttribute('data-full-src') || '';
+        const alt = img.getAttribute('alt') || '';
+        openImageLightbox(src, alt);
+      });
+    });
+
+    imgCloseBtn?.addEventListener('click', closeImageLightbox);
+    imgBg?.addEventListener('click', closeImageLightbox);
+
+    document.addEventListener('keydown', (e) => {
+      if (imgLightbox?.getAttribute('aria-hidden') === 'true') return;
+      if (e.key === 'Escape') closeImageLightbox();
+    });
+  });
+</script>
+
+<style>
+  /* Table styles */
+  .stem3-table {
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    color: #000000;
+  }
+  .stem3-table th {
+    background: #333333;
+    color: #ffffff;
+    font-family: "Titillium Web", "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px 16px;
+    border: 1px solid #000000;
+  }
+  .stem3-table td {
+    border: 1px solid #000000;
+    background: #ffffff;
+    padding: 12px 16px;
+    vertical-align: middle;
+  }
+  .stem3-td-name {
+    white-space: nowrap;
+    min-width: 120px;
+  }
+  .stem3-td-image {
+    width: 120px;
+    text-align: center;
+  }
+  .stem3-thumb {
+    width: 100px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .stem3-thumb:hover {
+    opacity: 0.8;
+  }
+  .stem3-td-preview {
+    width: 70px;
+    text-align: center;
+  }
+  .stem3-play-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #5aafc6;
+    padding: 4px;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .stem3-play-btn:hover {
+    color: #3d8fa6;
+    transform: scale(1.15);
+  }
+  .stem3-play-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .stem3-td-desc {
+    min-width: 180px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .stem3-td-desc :global(.stem3-extra-desc) {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: #666666;
+  }
+  .stem3-td-license {
+    width: 80px;
+    text-align: center;
+  }
+  .stem3-license-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #5aafc6;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  .stem3-license-link:hover {
+    color: #3d8fa6;
+  }
+  .stem3-license-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .stem3-td-download {
+    text-align: center;
+    white-space: nowrap;
+  }
+  .stem3-download-item {
+    display: block;
+    margin: 8px 0;
+    text-align: center;
+  }
+  .stem3-download-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background-color: #5aafc6;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+  }
+  .stem3-download-link:hover {
+    background-color: #3d8fa6;
+  }
+  .stem3-download-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .stem3-download-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .stem3-size {
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+    color: #666666;
+  }
+  .stem3-hash {
+    font-size: 11px;
+    font-style: italic;
+    color: #666666;
+    font-family: monospace;
+    word-break: break-all;
+  }
+  .stem3-no-image,
+  .stem3-no-preview {
+    color: #aaaaaa;
+    font-size: 18px;
+  }
+
+  /* Video Player Overlay */
+  .stem3-video-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stem3-video-overlay[aria-hidden="true"] {
+    display: none;
+  }
+  .stem3-video-overlay-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+  }
+  .stem3-video-container {
+    position: relative;
+    width: 85vw;
+    max-width: 1100px;
+  }
+  .stem3-video-container video {
+    width: 100%;
+    max-height: 80vh;
+    background: #000000;
+    border-radius: 4px;
+  }
+  .stem3-video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 80vh;
+    border-radius: 4px;
+    display: none;
+  }
+  .stem3-video-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10000;
+  }
+  .stem3-video-close:hover {
+    color: #cccccc;
+  }
+
+  /* Image Lightbox Overlay */
+  .stem3-image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stem3-image-lightbox[aria-hidden="true"] {
+    display: none;
+  }
+  .stem3-image-lightbox-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+  }
+  .stem3-image-lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stem3-image-lightbox-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+  .stem3-image-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10000;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 48px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .stem3-image-lightbox-close:hover {
+    color: #cccccc;
+  }
+</style>

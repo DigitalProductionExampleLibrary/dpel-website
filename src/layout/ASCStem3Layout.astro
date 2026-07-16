@@ -5,9 +5,8 @@
 import Breadcrumbs from "../component/Breadcrumbs.astro";
 import Button from "../component/Button.astro";
 import GalleryImage from "../component/GalleryImage.astro";
-import Table from "../component/Table2.astro";
+import Table from "../component/TableStem3.astro";
 import '../styles/global.css'
-import LicenseLayout from "./LicenseLayout.astro";
 import { BASE_URL } from "../utils/constants";
 
 const {
@@ -16,9 +15,6 @@ const {
   crumbs,
   downloadSection,
   imageCaption,
-  licenseConditions,
-  licenseContent,
-  licenseDisclaimer,
   otherImages,
   title,
   titleAlt,
@@ -74,15 +70,6 @@ const normalizedGalleries = (otherImages || []).map(gallery => ({
     <div class="post-content-download container mx-auto desktop:px-40 tablet:px-40 mobile-h:px-5 mobile-v:px-5 text-center">
       <h2 class="pb-5">{downloadSection.title}</h2>
 
-    </div>
-    )}
-    {licenseContent && (
-    <div class="license mt-16 p-10">
-      <p class="pb-6 desktop:ml-16 tablet:ml-16 mobile-h:ml-10 callout-text justify-self-center">{downloadSection.subtext}</p>
-      {<LicenseLayout
-        {...{licenseContent, licenseConditions, licenseDisclaimer, hideButtons: true}}
-        url={''}
-      />}
     </div>
     )}
     {downloadSection && (
