@@ -297,7 +297,7 @@ downloadSection: {
         thumbnail: "../images/StEM3/gallery9.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
         description: "<strong>StEM3 Color Charts</strong> includes 2D charts that can be used to evaluate colorimetry and other aspects of a virtual production stage.",
-        extraDescription: "Public Domain / CC0 1.0",
+        extraDescription: "Public Domain / CC0 1.0<br><br>Disclaimer: \"ColorChecker\" and \"X-Rite\" are registered trademarks of X-Rite, Incorporated (or their respective owners). ASWF, DPEL, StEM3, and the ASC are independent entities and are not affiliated with, sponsored by, or endorsed by X-Rite, Incorporated, Calibrite, or any of their affiliates. References to these trademarks are made solely for the purpose of indicating compatibility and technical specifications.",
         licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
         buttons: [{
           text: "DOWNLOAD",
