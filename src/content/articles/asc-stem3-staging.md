@@ -283,21 +283,21 @@ downloadSection: {
           size: "214.9 MiB",
         }],
       },
-      {
-        assetName: "Charts",
-        thumbnail: "../images/StEM3/gallery9.jpg",
-        moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
-        description: "StEM3 Charts includes 2D charts that can be used to evaluate colorimetry and other aspects of a virtual production stage.",
-        extraDescription: "Public Domain / CC0 1.0",
-        # licenseUrl: "/asc-stem3/asc-stem3-charts-license",
-        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-        buttons: [{
-          text: "DOWNLOAD",
-          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",
-          type: "primary",
-          size: "652.1 KiB",
-        }],
-      },
+      # {
+      #   assetName: "Charts",
+      #   thumbnail: "../images/StEM3/gallery9.jpg",
+      #   moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
+      #   description: "StEM3 Charts includes 2D charts that can be used to evaluate colorimetry and other aspects of a virtual production stage.",
+      #   extraDescription: "Public Domain / CC0 1.0",
+      #   # licenseUrl: "/asc-stem3/asc-stem3-charts-license",
+      #   licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+      #   buttons: [{
+      #     text: "DOWNLOAD",
+      #     url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",
+      #     type: "primary",
+      #     size: "652.1 KiB",
+      #   }],
+      # },
     ]
   }
   ]
