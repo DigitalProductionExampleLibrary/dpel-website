@@ -282,7 +282,7 @@ downloadSection: {
         assetName: "Lightning Plate",
         thumbnail: "../images/StEM3/gallery10.png",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Lightning_Plate.mp4",
-        description: "StEM3 Lightning plate showcases lightning strikes on a dark and stormy background. The rapid flashes of lightning can be helpful to visually evaluate the synchronization of video tiles on a virtual production wall. Provided in Unreal Engine 5.7 format.",
+        description: "<strong>StEM3 Lightning Plate</strong> showcases lightning strikes on a dark and stormy background. The rapid flashes of lightning can be helpful to visually evaluate the synchronization of video tiles on a virtual production wall. Provided in Unreal Engine 5.7 format.",
         extraDescription: "Donated by Vū Technologies",
         licenseUrl: "/asc-stem3/asc-stem3-lightning-plate-license",
         buttons: [{
@@ -292,21 +292,34 @@ downloadSection: {
           size: "214.9 MiB",
         }],
       },
-      # {
-      #   assetName: "Charts",
-      #   thumbnail: "../images/StEM3/gallery9.jpg",
-      #   moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
-      #   description: "StEM3 Charts includes 2D charts that can be used to evaluate colorimetry and other aspects of a virtual production stage.",
-      #   extraDescription: "Public Domain / CC0 1.0",
-      #   # licenseUrl: "/asc-stem3/asc-stem3-charts-license",
-      #   licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      #   buttons: [{
-      #     text: "DOWNLOAD",
-      #     url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",
-      #     type: "primary",
-      #     size: "652.1 KiB",
-      #   }],
-      # },
+      {
+        assetName: "Color Charts",
+        thumbnail: "../images/StEM3/gallery9.jpg",
+        moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
+        description: "<strong>StEM3 Color Charts</strong> includes 2D charts that can be used to evaluate colorimetry and other aspects of a virtual production stage.",
+        extraDescription: "Public Domain / CC0 1.0",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
+        buttons: [{
+          text: "DOWNLOAD",
+          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",
+          type: "primary",
+          size: "1.4 MiB",
+        }],
+      },
+      {
+        assetName: "25 Stop Exposure Chart",
+        thumbnail: "../images/StEM3/gallery11.png",
+        # moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
+        description: "<strong>StEM3 25-Stop Exposure Chart</strong> includes a 2D chart that can be used to evaluate the dynamic range, sensor characterization, and other aspects of a virtual production stage.",
+        extraDescription: "Donated by TSK Pictures, Inc.",
+        licenseUrl: "/asc-stem3/asc-stem3-charts-license",
+        buttons: [{
+          text: "DOWNLOAD",
+          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",
+          type: "primary",
+          size: "49.8 MiB",
+        }],
+      },
     ]
   }
   ]
