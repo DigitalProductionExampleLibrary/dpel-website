@@ -54,7 +54,8 @@ imageCaption: {
     "The American Society of Cinematographers Motion Imaging Technology Council introduces the next phase of the ASC Standard Evaluation Material projects: ASC MITC StEM3-VP, the third StEM project specifically for in-camera visual effects virtual production LED wall/volume technology.",
     "Created by the ASC's MITC under the leadership of the Virtual Production committee, the StEM3-VP is a suite of donated assets hosted by the Academy Software Foundation's Digital Production Library. The suite features multiple Epic Games Unreal Engine pre-built environments donated by top virtual production companies around the world, 2D driving plates, and 2D test elements that a cinematographer may use to test and evaluate a stage before shooting their production on it. The StEM3-VP assets can be used to check the performance and integrity of the LED panels and system functions.",
     "In addition, among the assets is a short scene shot by David Klein, ASC, written by Michael Goi, ASC, ISC and ASC associate member Jay Holben and directed by Holben. \"Warped: CyberCity\" showcases the capabilities of the ICVFX volume technology and provides a visual example using one of the donated assets.",
-    "For more information, visit the "
+    "For more information, visit the ",
+    "Join the conversation in the #assets channel "
   ],
   # Sample text links that would go in the caption if any. If not remove them like this:
   # {
@@ -77,6 +78,10 @@ imageCaption: {
   {
     text: "ASC StEM3 website.",
     link: "https://theasc.com/society/stem3"
+  },
+  {
+    text: "on the ASWF Slack.",
+    link: "https://slack.aswf.io/"
   }]
 }
 
