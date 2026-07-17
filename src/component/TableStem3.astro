@@ -91,14 +91,18 @@ function buildDescHtml(item) {
             {item.buttons && item.buttons.length > 0 ? (
               item.buttons.map((button) => (
                 <div class="stem3-download-item">
-                  <a class="stem3-download-link" href={button.url}>
-                    <svg class="stem3-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="7 10 12 15 17 10" />
-                      <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    <span class="stem3-download-text">{button.text}</span>
-                  </a>
+                  {button.url ? (
+                    <a class="stem3-download-link" href={button.url}>
+                      <svg class="stem3-download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      <span class="stem3-download-text">{button.text}</span>
+                    </a>
+                  ) : button.text ? (
+                    <span class="stem3-download-meta">{button.text}</span>
+                  ) : null}
                   {button.size ? <p class="stem3-size">{button.size}</p> : null}
                   {button.hash ? <p class="stem3-hash">{button.hash}</p> : null}
                 </div>
@@ -387,6 +391,11 @@ function buildDescHtml(item) {
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+  }
+  .stem3-download-meta {
+    font-size: 13px;
+    font-style: italic;
+    color: #666666;
   }
   .stem3-size {
     margin-top: 6px;

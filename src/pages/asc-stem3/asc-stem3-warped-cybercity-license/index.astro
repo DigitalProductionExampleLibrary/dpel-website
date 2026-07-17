@@ -5,7 +5,7 @@ import LicenseLayout from "../../../layout/LicenseLayout.astro";
 import MainLayout from "../../../layout/MainLayout.astro";
 
 const content = await getEntryBySlug('license', 'asc-stem3-warped-cybercity-license');
-const parentContent = await getEntryBySlug('articles', 'asc-stem3-staging');
+const parentContent = await getEntryBySlug('articles', 'asc-stem3');
 
 const crumbs = [
   { text: parentContent.data.titleAlt, href: `/${parentContent.data.url}` },
