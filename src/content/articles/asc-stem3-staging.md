@@ -145,7 +145,7 @@ downloadSection: {
           thumbnail: "../images/StEM3/warped2.jpg",
           moviePreview: "https://vimeo.com/1210327424",
           description: "A full length deep-dive into the making of StEM3, showcasing the production of “Warped: Cybercity” and the suite of virtual production assets, as well as featuring sit-down interviews with everyone involved in the project as they share their insights on the process and technology.",
-          extraDescription: "",
+          extraDescription: "Donated by the ASC",
           # licenseUrl: "/asc-stem3/asc-stem3-behind-the-scenes-license",
         }
       ]
@@ -180,26 +180,26 @@ downloadSection: {
           size: "17.6 GiB",
         }],
       },
-      {
-        assetName: "Base Camp",
-        thumbnail: "../images/StEM3/gallery2.jpg",
-        moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Base_Camp.mp4",
-        description: "StEM3 <strong>Base Camp</strong> is a 3D asset showcasing an himalayan base camp and the surrounding windy landscape of snow capped mountains, complete with tents and a row of flags fluttering in the wind.",
-        extraDescription: "Donated by Nant Studios",
-        licenseUrl: "/asc-stem3/asc-stem3-base-camp-license",
-        buttons: [{
-          text: "DOWNLOAD",
-          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/3D_Assets/StEM3_Base_Camp_UE5x.zip",
-          type: "primary",
-          size: "5.4 GiB",
-        }],
-      },
+      # {
+      #   assetName: "Base Camp",
+      #   thumbnail: "../images/StEM3/gallery2.jpg",
+      #   moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Base_Camp.mp4",
+      #   description: "StEM3 <strong>Base Camp</strong> is a 3D asset showcasing an himalayan base camp and the surrounding windy landscape of snow capped mountains, complete with tents and a row of flags fluttering in the wind.",
+      #   extraDescription: "Donated by Nant Studios",
+      #   licenseUrl: "/asc-stem3/asc-stem3-base-camp-license",
+      #   buttons: [{
+      #     text: "DOWNLOAD",
+      #     url: "https://dpel-assets.aswf.io/asc-stem3/Assets/3D_Assets/StEM3_Base_Camp_UE5x.zip",
+      #     type: "primary",
+      #     size: "5.4 GiB",
+      #   }],
+      # },
       {
         assetName: "Subway Station",
         thumbnail: "../images/StEM3/gallery6.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Subway_Station.mp4",
         description: "StEM3 <strong>Subway Station</strong> is a 3D asset representing an actual subway station as it is located in Montreal, Canada. Complete with ticket stalls and ATM machine, it can be explored in a few directions.",
-        extraDescription: "Donated by MELS Studios and Production",
+        extraDescription: "Donated by MELS Studios and Postproduction",
         licenseUrl: "/asc-stem3/asc-stem3-subway-station-license",
         buttons: [{
           text: "DOWNLOAD",
@@ -213,7 +213,7 @@ downloadSection: {
         thumbnail: "../images/StEM3/gallery3.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Back_Alley.mp4",
         description: "StEM3 <strong>Back Alley</strong> is a 3D asset showcasing a suspicious and disorderly back alley, including some parked car and trash of all sorts.",
-        extraDescription: "Donated by MELS Studios and Production",
+        extraDescription: "Donated by MELS Studios and Postproduction",
         licenseUrl: "/asc-stem3/asc-stem3-back-alley-license",
         buttons: [{
           text: "DOWNLOAD",
@@ -227,7 +227,7 @@ downloadSection: {
         thumbnail: "../images/StEM3/gallery4.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Saloon.mp4",
         description: "StEM3 <strong>Saloon</strong> is a 3D asset featuring an interior scene within a western saloon of lore. It comes with the bar, an assortment of liquors, some tables, chairs and a sitting area, all surrounded by second floor balconies on both sides.",
-        extraDescription: "Donated by Epic Games",
+        extraDescription: "Donated by Epic Games, Inc.",
         licenseUrl: "/asc-stem3/asc-stem3-saloon-license",
         buttons: [{
           text: "DOWNLOAD",
@@ -246,7 +246,7 @@ downloadSection: {
         thumbnail: "../images/StEM3/gallery7.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Driving_Plate.mp4",
         description: "StEM3 <strong>Los Angeles Driving Plate</strong> is a 2D asset / short movie loop of a drive through downtown L.A. around the iconic Westin Bonaventure Hotel.",
-        extraDescription: "Donated by Wild Rabbit Aerial",
+        extraDescription: "Donated by Spheris Array Systems",
         licenseUrl: "/asc-stem3/asc-stem3-la-driving-plate-license",
         buttons: [{
           text: "DOWNLOAD",
@@ -270,11 +270,11 @@ downloadSection: {
       #   size: "442.4 MiB",
       # },
       {
-        assetName: "Lightning",
+        assetName: "Lightning Plate",
         thumbnail: "../images/StEM3/gallery10.png",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Lightning_Plate.mp4",
         description: "StEM3 Lightning plate showcases lightning strikes on a dark and stormy background. The rapid flashes of lightning can be helpful to visually evaluate the synchronization of video tiles on a virtual production wall. Provided in Unreal Engine 5.7 format.",
-        extraDescription: "Donated by Vu Studios",
+        extraDescription: "Donated by Vū Technologies",
         licenseUrl: "/asc-stem3/asc-stem3-lightning-plate-license",
         buttons: [{
           text: "DOWNLOAD",
@@ -288,8 +288,9 @@ downloadSection: {
         thumbnail: "../images/StEM3/gallery9.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Color_Checker.mp4",
         description: "StEM3 Charts includes 2D charts that can be used to evaluate colorimetry and other aspects of a virtual production stage.",
-        extraDescription: "Donated by Tim Kang",
-        licenseUrl: "/asc-stem3/asc-stem3-charts-license",
+        extraDescription: "Public Domain / CC0 1.0",
+        # licenseUrl: "/asc-stem3/asc-stem3-charts-license",
+        licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
         buttons: [{
           text: "DOWNLOAD",
           url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",

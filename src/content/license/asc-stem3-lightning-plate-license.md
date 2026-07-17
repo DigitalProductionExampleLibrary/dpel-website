@@ -16,7 +16,7 @@ nextPageUrl: "/asc-stem3/asc-stem3-lightning-plate-license"
 # License text. Each sentence is broken up by commas.
 licenseContent: [
   'License for StEM3 Lightning Plate (the "Asset Name").',
-  "StEM3 Lightning Plate Copyright 2026 Vu Studios. All rights reserved.",
+  "StEM3 Lightning Plate Copyright 2026 Vū Technologies. All rights reserved.",
   "Redistribution and use of these digital assets, with or without modification, solely for education, training, research, software and hardware development, performance benchmarking (including publication of benchmark results and permitting reproducibility of the benchmark results by third parties), or software and hardware product demonstrations, are permitted provided that the following conditions are met:"
 ]
 
