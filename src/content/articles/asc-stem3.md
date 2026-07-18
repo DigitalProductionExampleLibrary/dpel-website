@@ -149,7 +149,7 @@ downloadSection: {
         {
           assetName: 'Behind the Scenes',
           thumbnail: "../images/StEM3/warped2.jpg",
-          moviePreview: "https://vimeo.com/1210937819",
+          moviePreview: "https://vimeo.com/1210327424",
           description: "A full length deep-dive into the making of StEM3, showcasing the production of “Warped: Cybercity” and the suite of virtual production assets, as well as featuring sit-down interviews with everyone involved in the project as they share their insights on the process and technology.",
           extraDescription: "Donated by the ASC",
           licenseUrl: "/asc-stem3/asc-stem3-warped-cybercity-license",
@@ -189,20 +189,20 @@ downloadSection: {
           size: "17.6 GiB",
         }],
       },
-      # {
-      #   assetName: "Base Camp",
-      #   thumbnail: "../images/StEM3/gallery2.jpg",
-      #   moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Base_Camp.mp4",
-      #   description: "StEM3 <strong>Base Camp</strong> is a 3D asset showcasing an himalayan base camp and the surrounding windy landscape of snow capped mountains, complete with tents and a row of flags fluttering in the wind.",
-      #   extraDescription: "Donated by Nant Studios",
-      #   licenseUrl: "/asc-stem3/asc-stem3-base-camp-license",
-      #   buttons: [{
-      #     text: "DOWNLOAD",
-      #     url: "https://dpel-assets.aswf.io/asc-stem3/Assets/3D_Assets/StEM3_Base_Camp_UE5x.zip",
-      #     type: "primary",
-      #     size: "5.4 GiB",
-      #   }],
-      # },
+      {
+        assetName: "Base Camp",
+        thumbnail: "../images/StEM3/gallery2.jpg",
+        moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Base_Camp.mp4",
+        description: "StEM3 <strong>Base Camp</strong> is a 3D asset showcasing an himalayan base camp and the surrounding windy landscape of snow capped mountains, complete with tents and a row of flags fluttering in the wind.",
+        extraDescription: "Donated by NantStudios",
+        licenseUrl: "/asc-stem3/asc-stem3-base-camp-license",
+        buttons: [{
+          text: "DOWNLOAD",
+          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/3D_Assets/StEM3_Base_Camp_UE5x.zip",
+          type: "primary",
+          size: "5.4 GiB",
+        }],
+      },
       {
         assetName: "Subway Station",
         thumbnail: "../images/StEM3/gallery6.jpg",
