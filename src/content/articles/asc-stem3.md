@@ -315,7 +315,7 @@ downloadSection: {
         licenseUrl: "/asc-stem3/asc-stem3-charts-license",
         buttons: [{
           text: "DOWNLOAD",
-          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_Color_Checker.zip",
+          url: "https://dpel-assets.aswf.io/asc-stem3/Assets/2D_Assets/StEM3_UHD-SceneLinear-25_stop_exposure_chart.exr",
           type: "primary",
           size: "49.8 MiB",
         }],
