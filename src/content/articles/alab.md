@@ -157,6 +157,17 @@ downloadSection: {
     description: "",
     descriptionBold: "Baked Procedurals - v.2.2.0",
     extraDescription: "The “cached” USD representation of our render-time procedurals in the shot. Merge this to see the fur & cloth on the animated characters.",
+  },
+  {
+    buttons: [{
+      text: "DOWNLOAD",
+      url: "https://dpel-assets.aswf.io/usd-alab/alab-splatdata.v2.3.0.zip",
+      type: "primary",
+    }],
+    size: "4.1 GB",
+    description: "",
+    descriptionBold: "Gaussian Splat Data - v.2.3.0",
+    extraDescription: "Source render and COLMAP data used to generate the Gaussian splat. Both SDR and HDR projects provided.",
   }]
 }
 ---
