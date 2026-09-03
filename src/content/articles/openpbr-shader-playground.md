@@ -104,13 +104,13 @@ downloadSection: {
       },
       {
         text: "DOWNLOAD",
-        url: "https://github.com/DigitalProductionExampleLibrary/OpenPBRShaderPlayground/archive/refs/tags/v1.0.zip",
+        url: "https://github.com/DigitalProductionExampleLibrary/OpenPBRShaderPlayground/archive/refs/tags/v1.1.zip",
         type: "primary",
       }
     ],
     size: "1.94 GB",
     description: "",
-    descriptionBold: "OpenPBR Shader Playground - v1.0",
+    descriptionBold: "OpenPBR Shader Playground - v1.1",
     extraDescription: "The asset in full is hosted on GitHub. Download the asset by cloning the repository for the latest updates (or contributions), or download the .zip archive in the GitHub release artifact.",
   }]
 }
