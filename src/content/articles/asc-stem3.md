@@ -165,7 +165,7 @@ downloadSection: {
         assetName: "Cybercity",
         thumbnail: "../images/StEM3/gallery1.jpg",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Cybercity.mp4",
-        description: "StEM3 <strong>Cybercity</strong> is a 3D asset representing an iconic neon city at night, reminiscent of the cyberpunk culture. It was used in the production of the “Warped : Cybercity” short sequence. StEM3 Cybercity is provided as an Unreal Engine v5.7 asset.",
+        description: "StEM3 <strong>Cybercity</strong> is a 3D asset representing an iconic neon city at night, reminiscent of the cyberpunk culture. It was used in the production of the “Warped : Cybercity” short sequence. StEM3 Cybercity is provided as an Unreal Engine v5.4 asset.",
         extraDescription: "Donated by Craftology",
         licenseUrl: "/asc-stem3/asc-stem3-cybercity-license",
         buttons: [{
@@ -282,7 +282,7 @@ downloadSection: {
         assetName: "Lightning Plate",
         thumbnail: "../images/StEM3/gallery10.png",
         moviePreview: "https://dpel-assets.aswf.io/asc-stem3/Assets/asset_previews/StEM3_Lightning_Plate.mp4",
-        description: "<strong>StEM3 Lightning Plate</strong> showcases lightning strikes on a dark and stormy background. The rapid flashes of lightning can be helpful to visually evaluate the synchronization of video tiles on a virtual production wall. Provided in Unreal Engine 5.7 format.",
+        description: "<strong>StEM3 Lightning Plate</strong> showcases lightning strikes on a dark and stormy background. The rapid flashes of lightning can be helpful to visually evaluate the synchronization of video tiles on a virtual production wall. Provided in Unreal Engine 5.4 format.",
         extraDescription: "Donated by Vū Technologies",
         licenseUrl: "/asc-stem3/asc-stem3-lightning-plate-license",
         buttons: [{
