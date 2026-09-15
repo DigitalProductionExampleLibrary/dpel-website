@@ -114,7 +114,7 @@ downloadSection: {
   },
   {
     buttons: [{
-      text: "COMING SOON",
+      text: "DOWNLOAD",
       url: "https://dpel-assets.aswf.io/materialx-teapot-lion/lion_statue_hq.usd",
       type: "primary",
     }],
